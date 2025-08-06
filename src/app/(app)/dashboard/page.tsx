@@ -10,13 +10,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, Video, BookOpen, GraduationCap } from "lucide-react";
+import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, Video, BookOpen, GraduationCap, ThumbsUp, MessageSquare, Share2, Send } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useForm, useForm as useFormCareer } from "react-hook-form";
 import { z } from "zod";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 // Skema untuk Pencocokan Pekerjaan
 const jobMatchFormSchema = z.object({
@@ -61,6 +63,24 @@ const mockTrainings = [
     { title: "Pola React Tingkat Lanjut", provider: "Udemy", type: "Kursus Daring" },
     { title: "Desainer Figma Bersertifikat", provider: "Figma Academy", type: "Sertifikasi" },
     { title: "Dasar-dasar Agile & Scrum", provider: "Coursera", type: "Kursus Daring" },
+];
+
+// Data tiruan untuk Postingan
+const mockPosts = [
+  {
+    id: 1,
+    user: { name: "Alex Doe", avatar: "https://placehold.co/40x40.png", dataAiHint: "profile picture" },
+    content: "Baru saja menyelesaikan proyek freelance pertama saya di GigConnect! Pengalaman yang luar biasa bekerja dengan klien hebat. Tidak sabar untuk yang berikutnya! #freelance #gigconnect #success",
+    likes: 42,
+    comments: 8,
+  },
+  {
+    id: 2,
+    user: { name: "Jane Creative", avatar: "https://placehold.co/40x40.png", dataAiHint: "profile picture" },
+    content: "Mencari developer React untuk proyek jangka pendek. Kirimkan portofolio Anda jika tertarik! #reactjs #developer #hiring",
+    likes: 15,
+    comments: 3,
+  },
 ];
 
 
@@ -167,6 +187,66 @@ export default function DashboardPage() {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Bagian Postingan */}
+        <section id="posts">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-8">Umpan Komunitas</h2>
+            <Card className="mb-8">
+                <CardContent className="p-4 flex flex-col gap-4">
+                    <div className="flex gap-4">
+                        <Avatar>
+                            <AvatarImage src="https://placehold.co/40x40.png" data-ai-hint="profile picture" />
+                            <AvatarFallback>AD</AvatarFallback>
+                        </Avatar>
+                        <Textarea placeholder="Apa yang Anda pikirkan, Alex?" className="flex-1" rows={2}/>
+                    </div>
+                    <div className="flex justify-end">
+                        <Button>
+                            <Send className="mr-2"/>
+                            Kirim
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <div className="space-y-6">
+                {mockPosts.map(post => (
+                    <Card key={post.id}>
+                        <CardHeader className="flex flex-row items-center gap-4">
+                            <Avatar>
+                                <AvatarImage src={post.user.avatar} data-ai-hint={post.user.dataAiHint} />
+                                <AvatarFallback>{post.user.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                                <p className="font-semibold">{post.user.name}</p>
+                                <p className="text-sm text-muted-foreground">Freelancer</p>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-muted-foreground whitespace-pre-wrap">{post.content}</p>
+                        </CardContent>
+                        <CardFooter className="flex flex-col items-start gap-4">
+                           <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                                <span>{post.likes} Suka</span>
+                                <span>{post.comments} Komentar</span>
+                           </div>
+                           <Separator/>
+                            <div className="flex justify-around w-full">
+                                <Button variant="ghost" className="w-full">
+                                    <ThumbsUp className="mr-2"/> Suka
+                                </Button>
+                                <Button variant="ghost" className="w-full">
+                                    <MessageSquare className="mr-2"/> Komentar
+                                </Button>
+                                <Button variant="ghost" className="w-full">
+                                    <Share2 className="mr-2"/> Bagikan
+                                </Button>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
         </section>
 
         {/* Bagian Jelajahi Pekerjaan */}
@@ -282,5 +362,7 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
 
     
