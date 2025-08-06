@@ -299,6 +299,58 @@ export default function DashboardPage() {
             {filteredJobs.length === 0 && <div className="text-center py-16"><p className="text-lg font-semibold">Tidak ada pekerjaan ditemukan</p><p className="text-muted-foreground">Coba sesuaikan filter pencarian Anda.</p></div>}
         </section>
 
+        {/* Bagian Pelatihan & Sertifikasi */}
+        <section id="training">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pelatihan & Sertifikasi</h2>
+            <p className="text-muted-foreground mb-8">Tingkatkan keahlian dan dapatkan sertifikasi untuk mendapatkan pekerjaan yang lebih baik.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {mockTrainings.map((training, index) => (
+                    <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-lg flex items-center gap-2">
+                                {training.type === "Sertifikasi" ? <GraduationCap className="h-5 w-5 text-primary" /> : <BookOpen className="h-5 w-5 text-primary" />}
+                                {training.title}
+                            </CardTitle>
+                            <CardDescription>{training.provider}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-1">
+                          <Badge variant="outline">{training.type}</Badge>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild className="w-full"><Link href="/training">Lihat Detail</Link></Button>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        </section>
+
+        {/* Bagian Jalur Karir */}
+        <section id="career-path">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Perencanaan Karir AI</h2>
+          <p className="text-muted-foreground mb-8">Biarkan AI kami menganalisis profil Anda dan menyarankan langkah selanjutnya dalam perjalanan lepas Anda.</p>
+          <Card>
+            <CardHeader><CardTitle className="font-headline">Ceritakan tentang diri Anda</CardTitle></CardHeader>
+            <CardContent>
+              <Form {...careerPathForm}>
+                <form onSubmit={careerPathForm.handleSubmit(onCareerPathSubmit)} className="space-y-4">
+                  <FormField control={careerPathForm.control} name="userSkills" render={({ field }) => (<FormItem><FormLabel>Keahlian Anda (dipisahkan koma)</FormLabel><FormControl><Input placeholder="React, Figma, SEO..." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={careerPathForm.control} name="userPreferences" render={({ field }) => (<FormItem><FormLabel>Preferensi Pekerjaan</FormLabel><FormControl><Input placeholder="Pengembangan Frontend, Desain UI/UX..." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={careerPathForm.control} name="userExperience" render={({ field }) => (<FormItem><FormLabel>Pengalaman Anda</FormLabel><FormControl><Textarea placeholder="Jelaskan latar belakang profesional Anda..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" disabled={careerPathLoading} className="w-full sm:w-auto">{careerPathLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/>Berpikir...</> : <>Sarankan Jalur Saya <Lightbulb className="ml-2 h-4 w-4" /></>}</Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+          {careerPathLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin"/><span>Membangun peta jalan karir Anda...</span></div>}
+          {careerSuggestion && (
+            <div className="mt-8 space-y-6">
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Lightbulb className="text-primary"/>Saran Jalur Karir</CardTitle></CardHeader><CardContent><p className="text-muted-foreground">{careerSuggestion.suggestedCareerPath}</p></CardContent></Card>
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><BrainCircuit className="text-primary"/>Keahlian untuk Dipelajari</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.relevantSkills.split(',').map(s => s.trim()).filter(Boolean).map((skill, index) => <Badge key={index}>{skill}</Badge>)}</CardContent></Card>
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/>Saran Sertifikasi</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.suggestedCertifications.split(',').map(s => s.trim()).filter(Boolean).map((cert, index) => <Badge variant="secondary" key={index}>{cert}</Badge>)}</CardContent></Card>
+            </div>
+          )}
+        </section>
+
         {/* Bagian Reels */}
         <section id="reels">
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Reels Freelancer</h2>
@@ -334,61 +386,11 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Bagian Jalur Karir */}
-        <section id="career-path">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Perencanaan Karir AI</h2>
-          <p className="text-muted-foreground mb-8">Biarkan AI kami menganalisis profil Anda dan menyarankan langkah selanjutnya dalam perjalanan lepas Anda.</p>
-          <Card>
-            <CardHeader><CardTitle className="font-headline">Ceritakan tentang diri Anda</CardTitle></CardHeader>
-            <CardContent>
-              <Form {...careerPathForm}>
-                <form onSubmit={careerPathForm.handleSubmit(onCareerPathSubmit)} className="space-y-4">
-                  <FormField control={careerPathForm.control} name="userSkills" render={({ field }) => (<FormItem><FormLabel>Keahlian Anda (dipisahkan koma)</FormLabel><FormControl><Input placeholder="React, Figma, SEO..." {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={careerPathForm.control} name="userPreferences" render={({ field }) => (<FormItem><FormLabel>Preferensi Pekerjaan</FormLabel><FormControl><Input placeholder="Pengembangan Frontend, Desain UI/UX..." {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={careerPathForm.control} name="userExperience" render={({ field }) => (<FormItem><FormLabel>Pengalaman Anda</FormLabel><FormControl><Textarea placeholder="Jelaskan latar belakang profesional Anda..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" disabled={careerPathLoading} className="w-full sm:w-auto">{careerPathLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/>Berpikir...</> : <>Sarankan Jalur Saya <Lightbulb className="ml-2 h-4 w-4" /></>}</Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-          {careerPathLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin"/><span>Membangun peta jalan karir Anda...</span></div>}
-          {careerSuggestion && (
-            <div className="mt-8 space-y-6">
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Lightbulb className="text-primary"/>Saran Jalur Karir</CardTitle></CardHeader><CardContent><p className="text-muted-foreground">{careerSuggestion.suggestedCareerPath}</p></CardContent></Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><BrainCircuit className="text-primary"/>Keahlian untuk Dipelajari</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.relevantSkills.split(',').map(s => s.trim()).filter(Boolean).map((skill, index) => <Badge key={index}>{skill}</Badge>)}</CardContent></Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/>Saran Sertifikasi</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.suggestedCertifications.split(',').map(s => s.trim()).filter(Boolean).map((cert, index) => <Badge variant="secondary" key={index}>{cert}</Badge>)}</CardContent></Card>
-            </div>
-          )}
-        </section>
-
-        {/* Bagian Pelatihan & Sertifikasi */}
-        <section id="training">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pelatihan & Sertifikasi</h2>
-            <p className="text-muted-foreground mb-8">Tingkatkan keahlian dan dapatkan sertifikasi untuk mendapatkan pekerjaan yang lebih baik.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {mockTrainings.map((training, index) => (
-                    <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
-                        <CardHeader>
-                            <CardTitle className="font-headline text-lg flex items-center gap-2">
-                                {training.type === "Sertifikasi" ? <GraduationCap className="h-5 w-5 text-primary" /> : <BookOpen className="h-5 w-5 text-primary" />}
-                                {training.title}
-                            </CardTitle>
-                            <CardDescription>{training.provider}</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-1">
-                          <Badge variant="outline">{training.type}</Badge>
-                        </CardContent>
-                        <CardFooter>
-                            <Button asChild className="w-full"><Link href="/training">Lihat Detail</Link></Button>
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
-        </section>
-
       </div>
     </div>
   );
 }
+
+    
 
     
