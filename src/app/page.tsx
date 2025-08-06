@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
-import { ArrowRight, Bot, Compass, User } from "lucide-react";
+import { ArrowRight, Bot, Compass, User, BookOpen, GraduationCap, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
@@ -20,7 +20,23 @@ const featuredJobs = [
   { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: 12000000, type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
   { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: 9000000, type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
   { title: "Backend Engineer (Node.js)", company: "DataStream", pay: 14000000, type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
+  { title: "Penulis Konten untuk Blog Teknologi", company: "TechVerse", pay: 5000000, type: "Lepas", skills: ["Menulis", "SEO", "Teknologi"] },
+  { title: "Manajer Media Sosial", company: "GrowthHackers", pay: 6000000, type: "Paruh Waktu", skills: ["Media Sosial", "Pemasaran", "Pembuatan Konten"] },
+  { title: "Manajer Produk - Fintech", company: "FinPal", pay: 18000000, type: "Kontrak", skills: ["Manajemen Produk", "Fintech", "Agile"] },
 ];
+
+const featuredTrainings = [
+    { title: "Pola React Tingkat Lanjut", provider: "Udemy", type: "Kursus Online", icon: BookOpen },
+    { title: "Desainer Figma Bersertifikat", provider: "Figma Academy", type: "Sertifikasi", icon: GraduationCap },
+    { title: "Dasar-dasar Agile & Scrum", provider: "Coursera", type: "Kursus Online", icon: BookOpen },
+];
+
+const featuredReels = [
+    { id: 1, title: "Sehari dalam Kehidupan seorang Freelancer", user: "alex.dev", dataAiHint: "freelancer coding" },
+    { id: 2, title: "Bagaimana Saya Mendapatkan Klien Pertama Saya", user: "creative.jane", dataAiHint: "designer working" },
+    { id: 3, title: "3 Trik Figma Teratas", user: "uiux.guru", dataAiHint: "design tutorial" },
+];
+
 
 export default function Home() {
   return (
@@ -103,7 +119,7 @@ export default function Home() {
             {featuredJobs.map((job, index) => (
               <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="font-headline">{job.title}</CardTitle>
+                  <CardTitle className="font-headline text-lg">{job.title}</CardTitle>
                   <CardDescription>{job.company} - <span className="font-semibold text-primary">{formatRupiah(job.pay)}</span><span className='text-sm text-muted-foreground'>/proyek</span></CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1">
@@ -112,7 +128,7 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Lihat Detail</Button>
+                  <Button asChild className="w-full"><Link href="/jobs">Lihat Detail</Link></Button>
                 </CardFooter>
               </Card>
             ))}
@@ -120,6 +136,66 @@ export default function Home() {
            <div className="text-center mt-12">
             <Button variant="outline" asChild>
               <Link href="/jobs">Lihat Semua Pekerjaan <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+        </section>
+
+        <section id="training" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 bg-secondary/30">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Tingkatkan Keahlian Anda</h2>
+            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Investasikan pada diri Anda dengan kursus dan sertifikasi yang relevan dengan industri.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredTrainings.map((training, index) => (
+              <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
+                <CardHeader>
+                    <div className="flex items-center gap-4">
+                        <training.icon className="h-8 w-8 text-primary" />
+                        <CardTitle className="font-headline text-lg">{training.title}</CardTitle>
+                    </div>
+                  <CardDescription>{training.provider}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1">
+                  <Badge variant="outline">{training.type}</Badge>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild className="w-full"><Link href="/training">Pelajari Lebih Lanjut</Link></Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+           <div className="text-center mt-12">
+            <Button variant="outline" asChild>
+              <Link href="/training">Jelajahi Semua Pelatihan <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+        </section>
+
+        <section id="m-reels" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Dapatkan Inspirasi dari M-Reels</h2>
+            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Tonton video pendek dari komunitas freelancer untuk tips, trik, dan motivasi.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {featuredReels.map((reel) => (
+                  <Card key={reel.id} className="group overflow-hidden relative rounded-lg">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                          <Video className="h-12 w-12 text-white" />
+                      </div>
+                      <div className="p-4 absolute bottom-0 left-0 text-white">
+                          <h3 className="font-bold">{reel.title}</h3>
+                          <p className="text-sm opacity-90">@{reel.user}</p>
+                      </div>
+                      <div className="w-full h-80 bg-muted flex items-center justify-center">
+                           <Image src="https://placehold.co/360x640.png" alt={reel.title} layout="fill" objectFit="cover" data-ai-hint={reel.dataAiHint} />
+                      </div>
+                  </Card>
+              ))}
+          </div>
+           <div className="text-center mt-12">
+            <Button variant="outline" asChild>
+              <Link href="/m-reels">Tonton Lebih Banyak <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </section>
