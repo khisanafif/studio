@@ -5,15 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 
-const skills = ["React", "Next.js", "TypeScript", "Node.js", "GraphQL", "UI/UX Design", "Figma", "Product Strategy"];
+const skills = ["React", "Next.js", "TypeScript", "Node.js", "GraphQL", "Desain UI/UX", "Figma", "Strategi Produk"];
 const portfolio = [
-  { title: "E-commerce Platform", description: "A full-stack e-commerce site with a custom CMS.", image: "https://placehold.co/600x400.png", dataAiHint: "website ecommerce" },
-  { title: "SaaS Dashboard", description: "Analytics dashboard for a B2B software company.", image: "https://placehold.co/600x400.png", dataAiHint: "dashboard analytics" },
-  { title: "Mobile Banking App", description: "UI/UX design for a next-gen mobile banking application.", image: "https://placehold.co/600x400.png", dataAiHint: "mobile app" },
+  { title: "Platform E-commerce", description: "Situs e-commerce full-stack dengan CMS kustom.", image: "https://placehold.co/600x400.png", dataAiHint: "website ecommerce" },
+  { title: "Dasbor SaaS", description: "Dasbor analitik untuk perusahaan perangkat lunak B2B.", image: "https://placehold.co/600x400.png", dataAiHint: "dashboard analytics" },
+  { title: "Aplikasi Perbankan Seluler", description: "Desain UI/UX untuk aplikasi perbankan seluler generasi berikutnya.", image: "https://placehold.co/600x400.png", dataAiHint: "mobile app" },
 ];
 const experience = [
-  { role: "Senior Frontend Developer", company: "Tech Solutions Inc.", period: "2021 - Present" },
-  { role: "UI/UX Designer", company: "Creative Minds", period: "2019 - 2021" },
+  { role: "Pengembang Frontend Senior", company: "Tech Solutions Inc.", period: "2021 - Sekarang" },
+  { role: "Desainer UI/UX", company: "Creative Minds", period: "2019 - 2021" },
 ];
 
 export default function ProfilePage() {
@@ -24,11 +24,11 @@ export default function ProfilePage() {
           <Card>
             <CardContent className="p-6 text-center">
               <Avatar className="w-24 h-24 mx-auto mb-4 border-2 border-primary">
-                <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="profile picture" />
+                <AvatarImage src="https://placehold.co/100x100.png" alt="Avatar Pengguna" data-ai-hint="profile picture" />
                 <AvatarFallback>AD</AvatarFallback>
               </Avatar>
               <h2 className="text-2xl font-headline font-bold">Alex Doe</h2>
-              <p className="text-muted-foreground">Frontend Developer & UI/UX Enthusiast</p>
+              <p className="text-muted-foreground">Pengembang Frontend & Penggemar UI/UX</p>
               <div className="flex justify-center gap-4 mt-4">
                 <Button variant="ghost" size="icon" asChild><a href="#"><Mail className="h-5 w-5" /></a></Button>
                 <Button variant="ghost" size="icon" asChild><a href="#"><Github className="h-5 w-5" /></a></Button>
@@ -38,7 +38,7 @@ export default function ProfilePage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline">Skills</CardTitle>
+              <CardTitle className="font-headline">Keahlian</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {skills.map(skill => <Badge key={skill}>{skill}</Badge>)}
@@ -48,18 +48,18 @@ export default function ProfilePage() {
         <div className="lg:col-span-2 space-y-8">
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline">About Me</CardTitle>
+              <CardTitle className="font-headline">Tentang Saya</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                Passionate developer with 5+ years of experience in building scalable and user-friendly web applications. I thrive on solving complex problems and creating beautiful, intuitive interfaces. Looking for my next challenge in the freelance world.
+                Pengembang yang bersemangat dengan pengalaman 5+ tahun dalam membangun aplikasi web yang skalabel dan ramah pengguna. Saya berkembang dalam memecahkan masalah kompleks dan menciptakan antarmuka yang indah dan intuitif. Mencari tantangan berikutnya di dunia lepas.
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline">Work Experience</CardTitle>
+              <CardTitle className="font-headline">Pengalaman Kerja</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {experience.map(exp => (
@@ -72,7 +72,7 @@ export default function ProfilePage() {
           </Card>
 
           <div>
-            <h2 className="text-2xl font-headline font-bold mb-4">Digital Portfolio</h2>
+            <h2 className="text-2xl font-headline font-bold mb-4">Portofolio Digital</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {portfolio.map(item => (
                 <Card key={item.title} className="overflow-hidden hover:shadow-lg transition-shadow">

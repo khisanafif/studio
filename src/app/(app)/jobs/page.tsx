@@ -19,7 +19,7 @@ const formatRupiah = (amount: number) => {
 
 const availableJobs = [
   { title: "Senior Frontend Developer", company: "TechCorp Indonesia", pay: 15000000, skills: ["React", "TypeScript", "GraphQL"], status: "available" },
-  { title: "UI/UX Designer for Fintech App", company: "CreativeWorks", pay: 12000000, skills: ["Figma", "UI/UX Research", "Prototyping"], status: "available" },
+  { title: "UI/UX Designer untuk Aplikasi Fintech", company: "CreativeWorks", pay: 12000000, skills: ["Figma", "Riset UI/UX", "Prototyping"], status: "available" },
   { title: "Full-Stack Engineer (MERN)", company: "StartupMaju", pay: 18000000, skills: ["MongoDB", "Express", "React", "Node.js"], status: "available" },
 ];
 
@@ -32,8 +32,8 @@ const acceptedJobs = [
 ];
 
 const completedJobs = [
-  { title: "SEO Specialist", company: "Digital Agency", pay: 8000000, skills: ["SEO", "Content Marketing", "Google Analytics"], status: "completed" },
-  { title: "Technical Writer", company: "Docs Inc.", pay: 9500000, skills: ["Technical Writing", "API Documentation"], status: "completed" },
+  { title: "Spesialis SEO", company: "Digital Agency", pay: 8000000, skills: ["SEO", "Pemasaran Konten", "Google Analytics"], status: "completed" },
+  { title: "Penulis Teknis", company: "Docs Inc.", pay: 9500000, skills: ["Penulisan Teknis", "Dokumentasi API"], status: "completed" },
 ];
 
 const allJobs = [...availableJobs, ...appliedJobs, ...acceptedJobs, ...completedJobs];
@@ -55,19 +55,19 @@ export default function JobsPage() {
             <div className="flex flex-wrap gap-2 mb-4">
               {job.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}
             </div>
-            <p className="font-semibold text-primary">{formatRupiah(job.pay)}<span className='text-sm text-muted-foreground'>/project</span></p>
+            <p className="font-semibold text-primary">{formatRupiah(job.pay)}<span className='text-sm text-muted-foreground'>/proyek</span></p>
           </CardContent>
           <CardFooter>
-            {job.status === 'available' && <Button className="w-full">Apply Now</Button>}
-            {job.status === 'applied' && <Button variant="outline" className="w-full" disabled>Application Sent</Button>}
-            {job.status === 'accepted' && <Button variant="secondary" className="w-full">In Progress</Button>}
-            {job.status === 'completed' && <Button variant="ghost" className="w-full text-green-600">Completed</Button>}
+            {job.status === 'available' && <Button className="w-full">Lamar Sekarang</Button>}
+            {job.status === 'applied' && <Button variant="outline" className="w-full" disabled>Lamaran Terkirim</Button>}
+            {job.status === 'accepted' && <Button variant="secondary" className="w-full">Sedang Berjalan</Button>}
+            {job.status === 'completed' && <Button variant="ghost" className="w-full text-green-600">Selesai</Button>}
           </CardFooter>
         </Card>
       )) : (
         <div className="md:col-span-2 lg:col-span-3 text-center py-16">
-            <p className="text-lg font-semibold">No jobs in this category</p>
-            <p className="text-muted-foreground">Check back later or explore available jobs.</p>
+            <p className="text-lg font-semibold">Tidak ada pekerjaan dalam kategori ini</p>
+            <p className="text-muted-foreground">Periksa lagi nanti atau jelajahi pekerjaan yang tersedia.</p>
         </div>
       )}
     </div>
@@ -81,9 +81,9 @@ export default function JobsPage() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-xl font-headline">
                         <DollarSign className="h-6 w-6" />
-                        <span>Total Earnings</span>
+                        <span>Total Pendapatan</span>
                     </CardTitle>
-                    <CardDescription className='text-primary-foreground/80'>This is the total amount you've earned from completed jobs.</CardDescription>
+                    <CardDescription className='text-primary-foreground/80'>Ini adalah jumlah total yang telah Anda peroleh dari pekerjaan yang selesai.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <p className="text-4xl font-bold">{formatRupiah(totalEarnings)}</p>
@@ -94,14 +94,14 @@ export default function JobsPage() {
         <Separator />
 
         <section id="job-board">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Job Board</h2>
-          <p className="text-muted-foreground mb-8">Manage your freelance job applications and track your progress.</p>
+          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Papan Pekerjaan</h2>
+          <p className="text-muted-foreground mb-8">Kelola lamaran pekerjaan lepas Anda dan lacak kemajuan Anda.</p>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
-              <TabsTrigger value="available" className="py-2"><Briefcase className="mr-2"/>Available</TabsTrigger>
-              <TabsTrigger value="applied" className="py-2"><FileText className="mr-2"/>Applied</TabsTrigger>
-              <TabsTrigger value="accepted" className="py-2"><Clock className="mr-2"/>Accepted</TabsTrigger>
-              <TabsTrigger value="completed" className="py-2"><CheckCircle className="mr-2"/>Completed</TabsTrigger>
+              <TabsTrigger value="available" className="py-2"><Briefcase className="mr-2"/>Tersedia</TabsTrigger>
+              <TabsTrigger value="applied" className="py-2"><FileText className="mr-2"/>Dilamar</TabsTrigger>
+              <TabsTrigger value="accepted" className="py-2"><Clock className="mr-2"/>Diterima</TabsTrigger>
+              <TabsTrigger value="completed" className="py-2"><CheckCircle className="mr-2"/>Selesai</TabsTrigger>
             </TabsList>
             <TabsContent value="available" className="mt-6">
               {renderJobList(availableJobs)}

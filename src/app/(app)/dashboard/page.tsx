@@ -18,47 +18,47 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
 
-// Schema for Job Match
+// Skema untuk Pencocokan Pekerjaan
 const jobMatchFormSchema = z.object({
-  skillsAndInterests: z.string().min(10, "Please tell us a bit more about your skills and interests."),
+  skillsAndInterests: z.string().min(10, "Harap beri tahu kami lebih banyak tentang keahlian dan minat Anda."),
 });
 
-// Schema for Career Path
+// Skema untuk Jalur Karir
 const careerPathFormSchema = z.object({
-  userSkills: z.string().min(3, "Please list at least one skill."),
-  userPreferences: z.string().min(3, "Please describe your job preferences."),
-  userExperience: z.string().min(10, "Please describe your experience."),
+  userSkills: z.string().min(3, "Harap sebutkan setidaknya satu keahlian."),
+  userPreferences: z.string().min(3, "Harap jelaskan preferensi pekerjaan Anda."),
+  userExperience: z.string().min(10, "Harap jelaskan pengalaman Anda."),
 });
 
-// Mock data for Jobs section
+// Data tiruan untuk bagian Pekerjaan
 const mockJobs = [
-  { title: "Frontend Developer for SaaS", company: "Innovate Inc.", pay: "75/hr", type: "Contract", skills: ["React", "TypeScript", "Next.js"] },
-  { title: "UI/UX Designer for Mobile App", company: "Creative Solutions", pay: "60/hr", type: "Part-Time", skills: ["Figma", "UI/UX", "Mobile Design"] },
-  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: "85/hr", type: "Contract", skills: ["Node.js", "Express", "PostgreSQL"] },
-  { title: "Content Writer for Tech Blog", company: "TechVerse", pay: "50/hr", type: "Freelance", skills: ["Writing", "SEO", "Tech"] },
-  { title: "Social Media Manager", company: "GrowthHackers", pay: "45/hr", type: "Part-Time", skills: ["Social Media", "Marketing", "Content Creation"] },
-  { title: "Product Manager - Fintech", company: "FinPal", pay: "110/hr", type: "Contract", skills: ["Product Management", "Fintech", "Agile"] },
+  { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: "75/jam", type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
+  { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: "60/jam", type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
+  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: "85/jam", type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
+  { title: "Penulis Konten untuk Blog Teknologi", company: "TechVerse", pay: "50/jam", type: "Lepas", skills: ["Menulis", "SEO", "Teknologi"] },
+  { title: "Manajer Media Sosial", company: "GrowthHackers", pay: "45/jam", type: "Paruh Waktu", skills: ["Media Sosial", "Pemasaran", "Pembuatan Konten"] },
+  { title: "Manajer Produk - Fintech", company: "FinPal", pay: "110/jam", type: "Kontrak", skills: ["Manajemen Produk", "Fintech", "Agile"] },
 ];
 
-// Mock data for Reels section
+// Data tiruan untuk bagian Reels
 const mockReels = [
-    { id: 1, title: "Day in the Life of a Freelancer", user: "alex.dev" },
-    { id: 2, title: "How I Landed My First Client", user: "creative.jane" },
-    { id: 3, title: "Top 3 Figma Tricks", user: "uiux.guru" },
+    { id: 1, title: "Sehari dalam Kehidupan seorang Freelancer", user: "alex.dev" },
+    { id: 2, title: "Bagaimana Saya Mendapatkan Klien Pertama Saya", user: "creative.jane" },
+    { id: 3, title: "3 Trik Figma Teratas", user: "uiux.guru" },
 ];
 
-// Mock data for Training section
+// Data tiruan untuk bagian Pelatihan
 const mockTrainings = [
-    { title: "Advanced React Patterns", provider: "Udemy", type: "Online Course" },
-    { title: "Certified Figma Designer", provider: "Figma Academy", type: "Certification" },
-    { title: "Agile & Scrum Fundamentals", provider: "Coursera", type: "Online Course" },
+    { title: "Pola React Tingkat Lanjut", provider: "Udemy", type: "Kursus Daring" },
+    { title: "Desainer Figma Bersertifikat", provider: "Figma Academy", type: "Sertifikasi" },
+    { title: "Dasar-dasar Agile & Scrum", provider: "Coursera", type: "Kursus Daring" },
 ];
 
 
 export default function DashboardPage() {
   const { toast } = useToast();
 
-  // State and form for Job Match
+  // State dan form untuk Pencocokan Pekerjaan
   const [jobMatchLoading, setJobMatchLoading] = useState(false);
   const [jobSuggestions, setJobSuggestions] = useState<JobMatchInitialSuggestionsOutput | null>(null);
   const jobMatchForm = useForm<z.infer<typeof jobMatchFormSchema>>({
@@ -72,14 +72,14 @@ export default function DashboardPage() {
       const result = await jobMatchInitialSuggestions(values);
       setJobSuggestions(result);
     } catch (error) {
-      console.error("Error fetching job suggestions:", error);
-      toast({ variant: "destructive", title: "An error occurred", description: "Failed to fetch job suggestions. Please try again." });
+      console.error("Kesalahan saat mengambil saran pekerjaan:", error);
+      toast({ variant: "destructive", title: "Terjadi kesalahan", description: "Gagal mengambil saran pekerjaan. Silakan coba lagi." });
     } finally {
       setJobMatchLoading(false);
     }
   }
 
-  // State and form for Career Path
+  // State dan form untuk Jalur Karir
   const [careerPathLoading, setCareerPathLoading] = useState(false);
   const [careerSuggestion, setCareerSuggestion] = useState<SuggestCareerPathOutput | null>(null);
   const careerPathForm = useFormCareer<z.infer<typeof careerPathFormSchema>>({
@@ -92,15 +92,16 @@ export default function DashboardPage() {
     try {
       const result = await suggestCareerPath(values);
       setCareerSuggestion(result);
-    } catch (error) {
-      console.error("Error fetching career path:", error);
-      toast({ variant: "destructive", title: "An error occurred", description: "Failed to generate career path. Please try again." });
+    } catch (error)
+ {
+      console.error("Kesalahan saat mengambil jalur karir:", error);
+      toast({ variant: "destructive", title: "Terjadi kesalahan", description: "Gagal membuat jalur karir. Silakan coba lagi." });
     } finally {
       setCareerPathLoading(false);
     }
   }
 
-  // State for Jobs List
+  // State untuk Daftar Pekerjaan
   const [searchTerm, setSearchTerm] = useState("");
   const [jobType, setJobType] = useState("all");
   const filteredJobs = useMemo(() => {
@@ -108,7 +109,7 @@ export default function DashboardPage() {
       const term = searchTerm.toLowerCase();
       const type = jobType.toLowerCase();
       const matchesTerm = job.title.toLowerCase().includes(term) || job.company.toLowerCase().includes(term) || job.skills.some(s => s.toLowerCase().includes(term));
-      const matchesType = type === 'all' || job.type.toLowerCase() === type;
+      const matchesType = type === 'all' || job.type.toLowerCase().replace('-', ' ') === type.replace('-', ' ');
       return matchesTerm && matchesType;
     });
   }, [searchTerm, jobType]);
@@ -118,38 +119,38 @@ export default function DashboardPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-4xl mx-auto space-y-16">
         
-        {/* Job Matching Section */}
+        {/* Bagian Pencocokan Pekerjaan */}
         <section id="job-matching">
-          <h1 className="text-3xl md:text-4xl font-headline font-bold mb-2">Smart Job Matching</h1>
+          <h1 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pencocokan Pekerjaan Cerdas</h1>
           <p className="text-muted-foreground mb-8">
-            Describe your skills and interests, and our AI will find the perfect freelance gigs for you.
+            Jelaskan keahlian dan minat Anda, dan AI kami akan menemukan pekerjaan lepas yang sempurna untuk Anda.
           </p>
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 font-headline"><Sparkles className="h-6 w-6 text-primary" /><span>What are you good at?</span></CardTitle>
-              <CardDescription>For example: "I'm a frontend developer skilled in React and TypeScript. I'm passionate about building beautiful user interfaces and interested in fintech."</CardDescription>
+              <CardTitle className="flex items-center gap-2 font-headline"><Sparkles className="h-6 w-6 text-primary" /><span>Apa keahlian Anda?</span></CardTitle>
+              <CardDescription>Contoh: "Saya seorang pengembang frontend yang terampil dalam React dan TypeScript. Saya bersemangat membangun antarmuka pengguna yang indah dan tertarik pada fintech."</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...jobMatchForm}>
                 <form onSubmit={jobMatchForm.handleSubmit(onJobMatchSubmit)} className="space-y-6">
                   <FormField control={jobMatchForm.control} name="skillsAndInterests" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Your Skills & Interests</FormLabel>
-                      <FormControl><Textarea placeholder="Tell us about your skills, passions, and what you're looking for..." rows={4} {...field} /></FormControl>
+                      <FormLabel>Keahlian & Minat Anda</FormLabel>
+                      <FormControl><Textarea placeholder="Ceritakan tentang keahlian, minat, dan apa yang Anda cari..." rows={4} {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
                   <Button type="submit" disabled={jobMatchLoading} className="w-full sm:w-auto">
-                    {jobMatchLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Analyzing...</> : <>Find My Gig <Rocket className="ml-2 h-4 w-4" /></>}
+                    {jobMatchLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menganalisis...</> : <>Temukan Pekerjaan Saya <Rocket className="ml-2 h-4 w-4" /></>}
                   </Button>
                 </form>
               </Form>
             </CardContent>
           </Card>
-          {jobMatchLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /><span>Searching for your perfect match...</span></div>}
+          {jobMatchLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /><span>Mencari pasangan sempurna Anda...</span></div>}
           {jobSuggestions && (
             <div className="mt-8">
-              <h2 className="text-2xl font-headline font-bold mb-4">Your Job Suggestions</h2>
+              <h2 className="text-2xl font-headline font-bold mb-4">Saran Pekerjaan Anda</h2>
               <div className="grid grid-cols-1 gap-4">
                 {jobSuggestions.jobSuggestions.map((job, index) => (
                   <Card key={index} className="bg-background hover:border-primary/50 transition-colors"><CardContent className="p-4"><p className="font-semibold">{job}</p></CardContent></Card>
@@ -159,22 +160,22 @@ export default function DashboardPage() {
           )}
         </section>
 
-        {/* Explore Jobs Section */}
+        {/* Bagian Jelajahi Pekerjaan */}
         <section id="jobs">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Explore Opportunities</h2>
-            <p className="text-muted-foreground mb-8">Browse and filter through our curated list of freelance jobs.</p>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Jelajahi Peluang</h2>
+            <p className="text-muted-foreground mb-8">Telusuri dan saring daftar pekerjaan lepas kami yang dikurasi.</p>
             <div className="flex flex-col md:flex-row gap-4 mb-8">
                 <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input placeholder="Search by title, company, or skill..." className="pl-10" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <Input placeholder="Cari berdasarkan judul, perusahaan, atau keahlian..." className="pl-10" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
                 <Select value={jobType} onValueChange={setJobType}>
-                    <SelectTrigger className="w-full md:w-[180px]"><SelectValue placeholder="Job Type" /></SelectTrigger>
+                    <SelectTrigger className="w-full md:w-[180px]"><SelectValue placeholder="Jenis Pekerjaan" /></SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">All Types</SelectItem>
-                        <SelectItem value="Contract">Contract</SelectItem>
-                        <SelectItem value="Part-Time">Part-Time</SelectItem>
-                        <SelectItem value="Freelance">Freelance</SelectItem>
+                        <SelectItem value="all">Semua Jenis</SelectItem>
+                        <SelectItem value="kontrak">Kontrak</SelectItem>
+                        <SelectItem value="paruh-waktu">Paruh Waktu</SelectItem>
+                        <SelectItem value="lepas">Lepas</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -183,20 +184,20 @@ export default function DashboardPage() {
                     <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                         <CardHeader>
                             <CardTitle className="font-headline text-lg">{job.title}</CardTitle>
-                            <CardDescription>{job.company} - <span className="font-semibold text-primary">${job.pay}</span></CardDescription>
+                            <CardDescription>{job.company} - <span className="font-semibold text-primary">{job.pay}</span></CardDescription>
                         </CardHeader>
                         <CardContent className="flex-1"><div className="flex flex-wrap gap-2">{job.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></CardContent>
-                        <CardFooter><Button asChild className="w-full"><Link href="/jobs">View Details</Link></Button></CardFooter>
+                        <CardFooter><Button asChild className="w-full"><Link href="/jobs">Lihat Detail</Link></Button></CardFooter>
                     </Card>
                 ))}
             </div>
-            {filteredJobs.length === 0 && <div className="text-center py-16"><p className="text-lg font-semibold">No jobs found</p><p className="text-muted-foreground">Try adjusting your search filters.</p></div>}
+            {filteredJobs.length === 0 && <div className="text-center py-16"><p className="text-lg font-semibold">Tidak ada pekerjaan ditemukan</p><p className="text-muted-foreground">Coba sesuaikan filter pencarian Anda.</p></div>}
         </section>
 
-        {/* Reels Section */}
+        {/* Bagian Reels */}
         <section id="reels">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Freelancer Reels</h2>
-            <p className="text-muted-foreground mb-8">Get inspired by short videos from the community.</p>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Reels Freelancer</h2>
+            <p className="text-muted-foreground mb-8">Dapatkan inspirasi dari video pendek dari komunitas.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {mockReels.map((reel) => (
                     <Card key={reel.id} className="group overflow-hidden relative">
@@ -216,43 +217,43 @@ export default function DashboardPage() {
             </div>
         </section>
 
-        {/* Career Path Section */}
+        {/* Bagian Jalur Karir */}
         <section id="career-path">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">AI Career Pathing</h2>
-          <p className="text-muted-foreground mb-8">Let our AI analyze your profile and suggest the next steps in your freelance journey.</p>
+          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Perencanaan Karir AI</h2>
+          <p className="text-muted-foreground mb-8">Biarkan AI kami menganalisis profil Anda dan menyarankan langkah selanjutnya dalam perjalanan lepas Anda.</p>
           <Card>
-            <CardHeader><CardTitle className="font-headline">Tell us about yourself</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="font-headline">Ceritakan tentang diri Anda</CardTitle></CardHeader>
             <CardContent>
               <Form {...careerPathForm}>
                 <form onSubmit={careerPathForm.handleSubmit(onCareerPathSubmit)} className="space-y-4">
-                  <FormField control={careerPathForm.control} name="userSkills" render={({ field }) => (<FormItem><FormLabel>Your Skills (comma-separated)</FormLabel><FormControl><Input placeholder="React, Figma, SEO..." {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={careerPathForm.control} name="userPreferences" render={({ field }) => (<FormItem><FormLabel>Job Preferences</FormLabel><FormControl><Input placeholder="Frontend Development, UI/UX Design..." {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={careerPathForm.control} name="userExperience" render={({ field }) => (<FormItem><FormLabel>Your Experience</FormLabel><FormControl><Textarea placeholder="Describe your professional background..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" disabled={careerPathLoading} className="w-full sm:w-auto">{careerPathLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/>Thinking...</> : <>Suggest My Path <Lightbulb className="ml-2 h-4 w-4" /></>}</Button>
+                  <FormField control={careerPathForm.control} name="userSkills" render={({ field }) => (<FormItem><FormLabel>Keahlian Anda (dipisahkan koma)</FormLabel><FormControl><Input placeholder="React, Figma, SEO..." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={careerPathForm.control} name="userPreferences" render={({ field }) => (<FormItem><FormLabel>Preferensi Pekerjaan</FormLabel><FormControl><Input placeholder="Pengembangan Frontend, Desain UI/UX..." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={careerPathForm.control} name="userExperience" render={({ field }) => (<FormItem><FormLabel>Pengalaman Anda</FormLabel><FormControl><Textarea placeholder="Jelaskan latar belakang profesional Anda..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" disabled={careerPathLoading} className="w-full sm:w-auto">{careerPathLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/>Berpikir...</> : <>Sarankan Jalur Saya <Lightbulb className="ml-2 h-4 w-4" /></>}</Button>
                 </form>
               </Form>
             </CardContent>
           </Card>
-          {careerPathLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin"/><span>Building your career roadmap...</span></div>}
+          {careerPathLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin"/><span>Membangun peta jalan karir Anda...</span></div>}
           {careerSuggestion && (
             <div className="mt-8 space-y-6">
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Lightbulb className="text-primary"/>Suggested Career Path</CardTitle></CardHeader><CardContent><p className="text-muted-foreground">{careerSuggestion.suggestedCareerPath}</p></CardContent></Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><BrainCircuit className="text-primary"/>Skills to Learn</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.relevantSkills.split(',').map(s => s.trim()).filter(Boolean).map((skill, index) => <Badge key={index}>{skill}</Badge>)}</CardContent></Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/>Suggested Certifications</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.suggestedCertifications.split(',').map(s => s.trim()).filter(Boolean).map((cert, index) => <Badge variant="secondary" key={index}>{cert}</Badge>)}</CardContent></Card>
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Lightbulb className="text-primary"/>Saran Jalur Karir</CardTitle></CardHeader><CardContent><p className="text-muted-foreground">{careerSuggestion.suggestedCareerPath}</p></CardContent></Card>
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><BrainCircuit className="text-primary"/>Keahlian untuk Dipelajari</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.relevantSkills.split(',').map(s => s.trim()).filter(Boolean).map((skill, index) => <Badge key={index}>{skill}</Badge>)}</CardContent></Card>
+              <Card><CardHeader><CardTitle className="flex items-center gap-2 font-headline"><Award className="text-primary"/>Saran Sertifikasi</CardTitle></CardHeader><CardContent className="flex flex-wrap gap-2">{careerSuggestion.suggestedCertifications.split(',').map(s => s.trim()).filter(Boolean).map((cert, index) => <Badge variant="secondary" key={index}>{cert}</Badge>)}</CardContent></Card>
             </div>
           )}
         </section>
 
-        {/* Training & Certification Section */}
+        {/* Bagian Pelatihan & Sertifikasi */}
         <section id="training">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Training & Certifications</h2>
-            <p className="text-muted-foreground mb-8">Upskill and get certified to land better gigs.</p>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pelatihan & Sertifikasi</h2>
+            <p className="text-muted-foreground mb-8">Tingkatkan keahlian dan dapatkan sertifikasi untuk mendapatkan pekerjaan yang lebih baik.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mockTrainings.map((training, index) => (
                     <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                         <CardHeader>
                             <CardTitle className="font-headline text-lg flex items-center gap-2">
-                                {training.type === "Certification" ? <GraduationCap className="h-5 w-5 text-primary" /> : <BookOpen className="h-5 w-5 text-primary" />}
+                                {training.type === "Sertifikasi" ? <GraduationCap className="h-5 w-5 text-primary" /> : <BookOpen className="h-5 w-5 text-primary" />}
                                 {training.title}
                             </CardTitle>
                             <CardDescription>{training.provider}</CardDescription>
@@ -261,7 +262,7 @@ export default function DashboardPage() {
                           <Badge variant="outline">{training.type}</Badge>
                         </CardContent>
                         <CardFooter>
-                            <Button asChild className="w-full"><Link href="/training">View Details</Link></Button>
+                            <Button asChild className="w-full"><Link href="/training">Lihat Detail</Link></Button>
                         </CardFooter>
                     </Card>
                 ))}

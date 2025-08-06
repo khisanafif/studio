@@ -13,8 +13,8 @@ import { Logo } from "@/components/logo";
 import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address."),
-  password: z.string().min(1, "Password is required."),
+  email: z.string().email("Silakan masukkan alamat email yang valid."),
+  password: z.string().min(1, "Kata sandi diperlukan."),
 });
 
 export default function LoginPage() {
@@ -29,8 +29,8 @@ export default function LoginPage() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // Here you would typically handle authentication
-    // For this prototype, we'll just redirect to the dashboard
+    // Di sini Anda biasanya akan menangani otentikasi
+    // Untuk prototipe ini, kami hanya akan mengarahkan ke dasbor
     router.push('/dashboard');
   }
 
@@ -41,8 +41,8 @@ export default function LoginPage() {
       </div>
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-2xl">Welcome Back!</CardTitle>
-          <CardDescription>Sign in to continue to GigConnect.</CardDescription>
+          <CardTitle className="font-headline text-2xl">Selamat Datang Kembali!</CardTitle>
+          <CardDescription>Masuk untuk melanjutkan ke GigConnect.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -54,7 +54,7 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="you@example.com" {...field} />
+                      <Input placeholder="anda@contoh.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -65,7 +65,7 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Kata Sandi</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
@@ -74,14 +74,14 @@ export default function LoginPage() {
                 )}
               />
               <Button type="submit" className="w-full">
-                Login
+                Masuk
               </Button>
             </form>
           </Form>
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
+            Belum punya akun?{" "}
             <Link href="/signup" className="font-semibold text-primary hover:underline">
-              Sign up
+              Daftar
             </Link>
           </p>
         </CardContent>

@@ -13,9 +13,9 @@ import { Logo } from "@/components/logo";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Please enter a valid email address."),
-  password: z.string().min(8, "Password must be at least 8 characters."),
+  name: z.string().min(2, "Nama harus memiliki minimal 2 karakter."),
+  email: z.string().email("Silakan masukkan alamat email yang valid."),
+  password: z.string().min(8, "Kata sandi harus memiliki minimal 8 karakter."),
 });
 
 export default function SignupPage() {
@@ -31,8 +31,8 @@ export default function SignupPage() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // Here you would typically handle user registration
-    // For this prototype, we'll just redirect to the dashboard
+    // Di sini Anda biasanya akan menangani pendaftaran pengguna
+    // Untuk prototipe ini, kami hanya akan mengarahkan ke dasbor
     router.push('/dashboard');
   }
 
@@ -43,8 +43,8 @@ export default function SignupPage() {
       </div>
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-2xl">Create an Account</CardTitle>
-          <CardDescription>Join GigConnect to find your next freelance opportunity.</CardDescription>
+          <CardTitle className="font-headline text-2xl">Buat Akun</CardTitle>
+          <CardDescription>Bergabunglah dengan GigConnect untuk menemukan peluang kerja lepas Anda berikutnya.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -54,7 +54,7 @@ export default function SignupPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Nama Lengkap</FormLabel>
                     <FormControl>
                       <Input placeholder="Alex Doe" {...field} />
                     </FormControl>
@@ -69,7 +69,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="you@example.com" {...field} />
+                      <Input placeholder="anda@contoh.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -80,7 +80,7 @@ export default function SignupPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Kata Sandi</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
@@ -89,14 +89,14 @@ export default function SignupPage() {
                 )}
               />
               <Button type="submit" className="w-full">
-                Create Account
+                Buat Akun
               </Button>
             </form>
           </Form>
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
+            Sudah punya akun?{" "}
             <Link href="/login" className="font-semibold text-primary hover:underline">
-              Login
+              Masuk
             </Link>
           </p>
         </CardContent>
