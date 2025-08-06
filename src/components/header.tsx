@@ -14,7 +14,6 @@ const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/jobs", label: "Jobs" },
   { href: "/career-path", label: "Career Path" },
-  { href: "/profile", label: "Profile" },
 ];
 
 export function Header() {
