@@ -1,12 +1,14 @@
 
 'use client';
 
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, MessageCircle, Send, MoreVertical, Upload } from "lucide-react";
+import { cn } from '@/lib/utils';
 
-const mockReels = [
+const mockReelsData = [
   {
     id: 1,
     user: {
@@ -44,19 +46,26 @@ const mockReels = [
 
 
 export default function MReelsPage() {
+  const [reels, setReels] = useState(mockReelsData.map(reel => ({...reel, isLiked: false })));
+
+  const handleLike = (id: number) => {
+    setReels(reels.map(reel => {
+      if (reel.id === id) {
+        return { ...reel, isLiked: !reel.isLiked, likes: reel.isLiked ? reel.likes - 1 : reel.likes + 1 };
+      }
+      return reel;
+    }));
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl md:text-4xl font-headline font-bold">M-Reels</h1>
-        <Button>
-          <Upload className="mr-2" />
-          Unggah Reel
-        </Button>
       </div>
 
       <div className="flex justify-center">
         <div className="w-full max-w-sm flex flex-col items-center gap-12">
-          {mockReels.map((reel) => (
+          {reels.map((reel) => (
             <Card key={reel.id} className="w-full rounded-xl overflow-hidden shadow-lg relative">
               {/* Header */}
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-10 bg-gradient-to-b from-black/50 to-transparent">
@@ -93,8 +102,13 @@ export default function MReelsPage() {
                           </p>
                       </div>
                       <div className="flex flex-col items-center gap-4">
-                          <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col">
-                              <Heart className="h-6 w-6" />
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="text-white h-10 w-10 flex flex-col"
+                            onClick={() => handleLike(reel.id)}
+                          >
+                              <Heart className={cn("h-6 w-6", reel.isLiked && "fill-primary text-primary")} />
                               <span className="text-xs">{reel.likes}</span>
                           </Button>
                           <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col">
