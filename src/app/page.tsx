@@ -35,9 +35,9 @@ const featuredTrainings = [
 ];
 
 const featuredReels = [
-    { id: 1, title: "Sehari dalam Kehidupan seorang Freelancer", user: "alex.dev", dataAiHint: "freelancer coding" },
-    { id: 2, title: "Bagaimana Saya Mendapatkan Klien Pertama Saya", user: "creative.jane", dataAiHint: "designer working" },
-    { id: 3, title: "3 Trik Figma Teratas", user: "uiux.guru", dataAiHint: "design tutorial" },
+    { id: 1, title: "Sehari dalam Kehidupan seorang Freelancer", user: "alex.dev", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" },
+    { id: 2, title: "Bagaimana Saya Mendapatkan Klien Pertama Saya", user: "creative.jane", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+    { id: 3, title: "3 Trik Figma Teratas", user: "uiux.guru", videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
 ];
 
 
@@ -191,7 +191,14 @@ export default function Home() {
                           <p className="text-sm opacity-90">@{reel.user}</p>
                       </div>
                       <div className="w-full h-80 bg-muted flex items-center justify-center">
-                           <Image src="https://placehold.co/360x640.png" alt={reel.title} fill objectFit="cover" data-ai-hint={reel.dataAiHint} />
+                           <video
+                              src={reel.videoUrl}
+                              className="w-full h-full object-cover"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
                       </div>
                   </Card>
               ))}
@@ -260,5 +267,3 @@ export default function Home() {
     </div>
   );
 }
-
-    

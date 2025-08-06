@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, MessageCircle, Send, MoreVertical, Upload } from "lucide-react";
-import Image from "next/image";
 
 const mockReels = [
   {
@@ -14,8 +13,7 @@ const mockReels = [
       name: "alex.dev",
       avatar: "https://placehold.co/40x40.png"
     },
-    videoUrl: "https://placehold.co/360x640.png",
-    dataAiHint: "coding programming",
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     caption: "Seharian ngoding buat fitur baru! 💻 #programmerlife #coding #gigconnect",
     likes: 123,
     comments: 12,
@@ -26,8 +24,7 @@ const mockReels = [
       name: "creative.jane",
       avatar: "https://placehold.co/40x40.png"
     },
-    videoUrl: "https://placehold.co/360x640.png",
-    dataAiHint: "graphic design",
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     caption: "Tips & trik desain pakai Figma, dijamin produktif! ✨ #figma #desain #uiux",
     likes: 456,
     comments: 45,
@@ -38,8 +35,7 @@ const mockReels = [
       name: "uiux.guru",
       avatar: "https://placehold.co/40x40.png"
     },
-    videoUrl: "https://placehold.co/360x640.png",
-    dataAiHint: "freelancer lifestyle",
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     caption: "Lifehacks buat para freelancer biar tetap waras. Wajib coba! #freelance #wfh #lifehacks",
     likes: 789,
     comments: 102,
@@ -76,15 +72,15 @@ export default function MReelsPage() {
                 </Button>
               </div>
 
-              {/* Video Player Placeholder */}
+              {/* Video Player */}
               <div className="relative w-full aspect-[9/16] bg-secondary">
-                <Image
+                <video
                   src={reel.videoUrl}
-                  alt={`Reel by ${reel.user.name}`}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="w-full h-full"
-                  data-ai-hint={reel.dataAiHint}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
               </div>
               
