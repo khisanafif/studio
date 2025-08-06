@@ -21,19 +21,28 @@ export function Header() {
   const pathname = usePathname();
 
   const renderNavLinks = (isMobile = false) =>
-    navLinks.map((link) => (
-      <Button asChild variant="ghost" key={link.href} className={cn(isMobile && "w-full justify-start")}>
-        <Link
-          href={link.href}
-          className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            pathname.startsWith(link.href) ? "text-primary" : "text-muted-foreground"
-          )}
+    navLinks.map((link) => {
+      const isActive = pathname.startsWith(link.href);
+      return (
+        <Button
+          asChild
+          variant={isActive ? "default" : "ghost"}
+          key={link.href}
+          className={cn(isMobile && "w-full justify-start")}
         >
-          {link.label}
-        </Link>
-      </Button>
-    ));
+          <Link
+            href={link.href}
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              !isActive && "text-muted-foreground",
+              isActive && "hover:text-primary-foreground/90"
+            )}
+          >
+            {link.label}
+          </Link>
+        </Button>
+      );
+    });
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
