@@ -6,13 +6,13 @@ import { Logo } from "./logo";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, UserCircle } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/jobs", label: "Jobs" },
   { href: "/career-path", label: "Career Path" },
-  { href: "/profile", label: "Profile" },
 ];
 
 export function Header() {
@@ -59,10 +59,30 @@ export function Header() {
           </Sheet>
         </div>
         
-        <div className="flex flex-1 items-center justify-end">
-          <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-2">
             {renderNavLinks()}
-          </nav>
+        </nav>
+
+        <div className="flex flex-1 items-center justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <UserCircle className="h-6 w-6" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link href="/profile">Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href="/">Logout</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
