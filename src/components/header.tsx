@@ -13,7 +13,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/jobs", label: "Jobs" },
-  { href: "/career-path", label: "Career Path" },
+  { href: "/training", label: "Pelatihan" },
 ];
 
 export function Header() {

@@ -10,12 +10,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, Video } from "lucide-react";
+import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, Video, BookOpen, GraduationCap } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useForm, useForm as useFormCareer } from "react-hook-form";
 import { z } from "zod";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Link from "next/link";
 
 // Schema for Job Match
 const jobMatchFormSchema = z.object({
@@ -44,6 +45,13 @@ const mockReels = [
     { id: 1, title: "Day in the Life of a Freelancer", user: "alex.dev" },
     { id: 2, title: "How I Landed My First Client", user: "creative.jane" },
     { id: 3, title: "Top 3 Figma Tricks", user: "uiux.guru" },
+];
+
+// Mock data for Training section
+const mockTrainings = [
+    { title: "Advanced React Patterns", provider: "Udemy", type: "Online Course" },
+    { title: "Certified Figma Designer", provider: "Figma Academy", type: "Certification" },
+    { title: "Agile & Scrum Fundamentals", provider: "Coursera", type: "Online Course" },
 ];
 
 
@@ -178,7 +186,7 @@ export default function DashboardPage() {
                             <CardDescription>{job.company} - <span className="font-semibold text-primary">${job.pay}</span></CardDescription>
                         </CardHeader>
                         <CardContent className="flex-1"><div className="flex flex-wrap gap-2">{job.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></CardContent>
-                        <CardFooter><Button className="w-full">View Details</Button></CardFooter>
+                        <CardFooter><Button asChild className="w-full"><Link href="/jobs">View Details</Link></Button></CardFooter>
                     </Card>
                 ))}
             </div>
@@ -235,9 +243,32 @@ export default function DashboardPage() {
           )}
         </section>
 
+        {/* Training & Certification Section */}
+        <section id="training">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Training & Certifications</h2>
+            <p className="text-muted-foreground mb-8">Upskill and get certified to land better gigs.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {mockTrainings.map((training, index) => (
+                    <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-lg flex items-center gap-2">
+                                {training.type === "Certification" ? <GraduationCap className="h-5 w-5 text-primary" /> : <BookOpen className="h-5 w-5 text-primary" />}
+                                {training.title}
+                            </CardTitle>
+                            <CardDescription>{training.provider}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-1">
+                          <Badge variant="outline">{training.type}</Badge>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild className="w-full"><Link href="/training">View Details</Link></Button>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        </section>
+
       </div>
     </div>
   );
 }
-
-    
