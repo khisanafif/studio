@@ -191,7 +191,7 @@ export default function Home() {
                           <p className="text-sm opacity-90">@{reel.user}</p>
                       </div>
                       <div className="w-full h-80 bg-muted flex items-center justify-center">
-                           <Image src="https://placehold.co/360x640.png" alt={reel.title} width={360} height={640} objectFit="cover" data-ai-hint={reel.dataAiHint} />
+                           <Image src="https://placehold.co/360x640.png" alt={reel.title} fill objectFit="cover" data-ai-hint={reel.dataAiHint} />
                       </div>
                   </Card>
               ))}
@@ -203,35 +203,6 @@ export default function Home() {
           </div>
         </section>
         
-        <section id="career-planning" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 bg-secondary/30">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Rencanakan Karir Anda dengan AI</h2>
-            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Biar AI kami menganalisis profil Anda dan menyarankan langkah selanjutnya dalam perjalanan lepas Anda.</p>
-          </div>
-           <Card className="max-w-2xl mx-auto">
-            <CardHeader><CardTitle className="font-headline">Ceritakan tentang diri Anda</CardTitle></CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="skills-landing">Keahlian Anda (dipisahkan koma)</Label>
-                    <Input id="skills-landing" placeholder="React, Figma, SEO..." readOnly/>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="preferences-landing">Preferensi Pekerjaan</Label>
-                    <Input id="preferences-landing" placeholder="Pengembangan Frontend, Desain UI/UX..." readOnly/>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="experience-landing">Pengalaman Anda</Label>
-                    <Textarea id="experience-landing" placeholder="Jelaskan latar belakang profesional Anda..." rows={4} readOnly />
-                  </div>
-                  <Button asChild className="w-full sm:w-auto">
-                    <Link href="/login">Sarankan Jalur Saya <Lightbulb className="ml-2 h-4 w-4" /></Link>
-                  </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -253,9 +224,41 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section id="career-planning" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 bg-secondary/30">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Rencanakan Karir Anda dengan AI</h2>
+            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Biar AI kami menganalisis profil Anda dan menyarankan langkah selanjutnya dalam perjalanan lepas Anda.</p>
+          </div>
+           <Card className="max-w-2xl mx-auto">
+            <CardHeader><CardTitle className="font-headline">Ceritakan tentang diri Anda</CardTitle></CardHeader>
+            <CardContent>
+              <form className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="skills-landing">Keahlian Anda (dipisahkan koma)</Label>
+                    <Input id="skills-landing" placeholder="React, Figma, SEO..." readOnly/>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="preferences-landing">Preferensi Pekerjaan</Label>
+                    <Input id="preferences-landing" placeholder="Pengembangan Frontend, Desain UI/UX..." readOnly/>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="experience-landing">Pengalaman Anda</Label>
+                    <Textarea id="experience-landing" placeholder="Jelaskan latar belakang profesional Anda..." rows={4} readOnly />
+                  </div>
+                  <Button asChild className="w-full sm:w-auto">
+                    <Link href="/login">Sarankan Jalur Saya <Lightbulb className="ml-2 h-4 w-4" /></Link>
+                  </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </section>
+
       </main>
 
       <Footer />
     </div>
   );
 }
+
+    
