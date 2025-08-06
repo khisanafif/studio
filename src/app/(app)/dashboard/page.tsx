@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, BookOpen, GraduationCap, ThumbsUp, MessageSquare, Share2, Send, MoreVertical, Heart } from "lucide-react";
+import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, BookOpen, GraduationCap, ThumbsUp, MessageSquare, Share2, Send, MoreVertical, Heart, Video, ArrowRight } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useForm, useForm as useFormCareer } from "react-hook-form";
 import { z } from "zod";
@@ -53,40 +53,26 @@ const mockJobs = [
 
 // Data tiruan untuk bagian Reels
 const mockReels = [
-  {
-    id: 1,
-    user: {
-      name: "alex.dev",
-      avatar: "https://placehold.co/40x40.png"
-    },
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    caption: "Seharian ngoding buat fitur baru! 💻 #programmerlife #coding #gigconnect",
-    likes: 123,
-    comments: 12,
+  { 
+    id: 1, 
+    title: "Sehari dalam Kehidupan seorang Freelancer", 
+    user: "alex.dev", 
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" 
   },
-  {
-    id: 2,
-    user: {
-      name: "creative.jane",
-      avatar: "https://placehold.co/40x40.png"
-    },
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    caption: "Tips & trik desain pakai Figma, dijamin produktif! ✨ #figma #desain #uiux",
-    likes: 456,
-    comments: 45,
+  { 
+    id: 2, 
+    title: "Bagaimana Saya Mendapatkan Klien Pertama Saya", 
+    user: "creative.jane", 
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" 
   },
-  {
-    id: 3,
-    user: {
-      name: "uiux.guru",
-      avatar: "https://placehold.co/40x40.png"
-    },
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-    caption: "Lifehacks buat para freelancer biar tetap waras. Wajib coba! #freelance #wfh #lifehacks",
-    likes: 789,
-    comments: 102,
+  { 
+    id: 3, 
+    title: "3 Trik Figma Teratas", 
+    user: "uiux.guru", 
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" 
   },
 ];
+
 
 // Data tiruan untuk bagian Pelatihan
 const mockTrainings = [
@@ -317,63 +303,35 @@ export default function DashboardPage() {
         <section id="reels">
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Reels Freelancer</h2>
             <p className="text-muted-foreground mb-8">Dapatkan inspirasi dari video pendek dari komunitas.</p>
-            <div className="flex justify-center">
-                <div className="w-full max-w-sm flex flex-col items-center gap-12">
-                {mockReels.map((reel) => (
-                    <Card key={reel.id} className="w-full rounded-xl overflow-hidden shadow-lg relative">
-                    {/* Header */}
-                    <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-10 bg-gradient-to-b from-black/50 to-transparent">
-                        <div className="flex items-center gap-2">
-                        <Avatar className="w-8 h-8">
-                            <AvatarImage src={reel.user.avatar} alt={reel.user.name} data-ai-hint="profile picture" />
-                            <AvatarFallback>{reel.user.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <span className="font-bold text-sm text-white">{reel.user.name}</span>
-                        </div>
-                        <Button variant="ghost" size="icon" className="text-white">
-                        <MoreVertical className="h-5 w-5" />
-                        </Button>
-                    </div>
-
-                    {/* Video Player */}
-                    <div className="relative w-full aspect-[9/16] bg-secondary">
-                        <video
-                        src={reel.videoUrl}
-                        className="w-full h-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        />
-                    </div>
-                    
-                    {/* Actions & Caption */}
-                    <div className="absolute bottom-0 left-0 w-full p-4 z-10 bg-gradient-to-t from-black/50 to-transparent">
-                        <div className="flex justify-between items-end">
-                            <div className="text-white max-w-[calc(100%-4rem)]">
-                                <p className="text-sm">
-                                    <span className="font-bold">{reel.user.name}</span> {reel.caption}
-                                </p>
-                            </div>
-                            <div className="flex flex-col items-center gap-4">
-                                <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col">
-                                    <Heart className="h-6 w-6" />
-                                    <span className="text-xs">{reel.likes}</span>
-                                </Button>
-                                <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col">
-                                    <MessageSquare className="h-6 w-6" />
-                                    <span className="text-xs">{reel.comments}</span>
-                                </Button>
-                                <Button variant="ghost" size="icon" className="text-white h-10 w-10">
-                                    <Send className="h-6 w-6" />
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                    </Card>
-                ))}
-                </div>
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {mockReels.map((reel) => (
+                  <Card key={reel.id} className="group overflow-hidden relative rounded-lg">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                          <Video className="h-12 w-12 text-white" />
+                      </div>
+                      <div className="p-4 absolute bottom-0 left-0 text-white">
+                          <h3 className="font-bold">{reel.title}</h3>
+                          <p className="text-sm opacity-90">@{reel.user}</p>
+                      </div>
+                      <div className="w-full h-80 bg-muted flex items-center justify-center">
+                           <video
+                              src={reel.videoUrl}
+                              className="w-full h-full object-cover"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
+                      </div>
+                  </Card>
+              ))}
+          </div>
+           <div className="text-center mt-12">
+            <Button variant="outline" asChild>
+              <Link href="/m-reels">Tonton Lebih Banyak <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
         </section>
 
         {/* Bagian Jalur Karir */}
@@ -432,3 +390,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
