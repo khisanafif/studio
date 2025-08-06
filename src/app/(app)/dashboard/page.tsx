@@ -30,14 +30,23 @@ const careerPathFormSchema = z.object({
   userExperience: z.string().min(10, "Harap jelaskan pengalaman Anda."),
 });
 
+const formatRupiah = (amount: number) => {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+  }).format(amount);
+};
+
+
 // Data tiruan untuk bagian Pekerjaan
 const mockJobs = [
-  { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: "75/jam", type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
-  { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: "60/jam", type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
-  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: "85/jam", type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
-  { title: "Penulis Konten untuk Blog Teknologi", company: "TechVerse", pay: "50/jam", type: "Lepas", skills: ["Menulis", "SEO", "Teknologi"] },
-  { title: "Manajer Media Sosial", company: "GrowthHackers", pay: "45/jam", type: "Paruh Waktu", skills: ["Media Sosial", "Pemasaran", "Pembuatan Konten"] },
-  { title: "Manajer Produk - Fintech", company: "FinPal", pay: "110/jam", type: "Kontrak", skills: ["Manajemen Produk", "Fintech", "Agile"] },
+  { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: 12000000, type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
+  { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: 9000000, type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
+  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: 14000000, type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
+  { title: "Penulis Konten untuk Blog Teknologi", company: "TechVerse", pay: 5000000, type: "Lepas", skills: ["Menulis", "SEO", "Teknologi"] },
+  { title: "Manajer Media Sosial", company: "GrowthHackers", pay: 6000000, type: "Paruh Waktu", skills: ["Media Sosial", "Pemasaran", "Pembuatan Konten"] },
+  { title: "Manajer Produk - Fintech", company: "FinPal", pay: 18000000, type: "Kontrak", skills: ["Manajemen Produk", "Fintech", "Agile"] },
 ];
 
 // Data tiruan untuk bagian Reels
@@ -184,7 +193,7 @@ export default function DashboardPage() {
                     <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                         <CardHeader>
                             <CardTitle className="font-headline text-lg">{job.title}</CardTitle>
-                            <CardDescription>{job.company} - <span className="font-semibold text-primary">{job.pay}</span></CardDescription>
+                            <CardDescription>{job.company} - <span className="font-semibold text-primary">{formatRupiah(job.pay)}</span><span className='text-sm text-muted-foreground'>/proyek</span></CardDescription>
                         </CardHeader>
                         <CardContent className="flex-1"><div className="flex flex-wrap gap-2">{job.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></CardContent>
                         <CardFooter><Button asChild className="w-full"><Link href="/jobs">Lihat Detail</Link></Button></CardFooter>
@@ -273,3 +282,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    

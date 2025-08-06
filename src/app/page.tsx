@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { ArrowRight, Bot, Compass, User, Briefcase, Facebook, Twitter, Instagram } from "lucide-react";
@@ -6,10 +7,18 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Badge } from "@/components/ui/badge";
 
+const formatRupiah = (amount: number) => {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+  }).format(amount);
+};
+
 const featuredJobs = [
-  { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: "75/jam", type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
-  { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: "60/jam", type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
-  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: "85/jam", type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
+  { title: "Frontend Developer untuk SaaS", company: "Innovate Inc.", pay: 12000000, type: "Kontrak", skills: ["React", "TypeScript", "Next.js"] },
+  { title: "UI/UX Designer untuk Aplikasi Seluler", company: "Creative Solutions", pay: 9000000, type: "Paruh Waktu", skills: ["Figma", "UI/UX", "Desain Seluler"] },
+  { title: "Backend Engineer (Node.js)", company: "DataStream", pay: 14000000, type: "Kontrak", skills: ["Node.js", "Express", "PostgreSQL"] },
 ];
 
 export default function Home() {
@@ -94,7 +103,7 @@ export default function Home() {
               <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                 <CardHeader>
                   <CardTitle className="font-headline">{job.title}</CardTitle>
-                  <CardDescription>{job.company} - <span className="font-semibold text-primary">{job.pay}</span></CardDescription>
+                  <CardDescription>{job.company} - <span className="font-semibold text-primary">{formatRupiah(job.pay)}</span><span className='text-sm text-muted-foreground'>/proyek</span></CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1">
                   <div className="flex flex-wrap gap-2">
@@ -177,3 +186,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
