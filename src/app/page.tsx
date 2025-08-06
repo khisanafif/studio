@@ -62,7 +62,7 @@ export default function Home() {
             GigConnect adalah cara terpintar bagi Gen Z untuk menemukan peluang kerja lepas. Tinggalkan gulir tak berujung. Kami membawa pekerjaan yang tepat untuk Anda.
           </p>
           <Button size="lg" asChild>
-            <Link href="/dashboard">
+            <Link href="/login">
               Jelajahi Peluang <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
@@ -128,14 +128,14 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild className="w-full"><Link href="/jobs">Lihat Detail</Link></Button>
+                  <Button asChild className="w-full"><Link href="/login">Lihat Detail</Link></Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
            <div className="text-center mt-12">
             <Button variant="outline" asChild>
-              <Link href="/jobs">Lihat Semua Pekerjaan <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/login">Lihat Semua Pekerjaan <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </section>
@@ -159,14 +159,14 @@ export default function Home() {
                   <Badge variant="outline">{training.type}</Badge>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild className="w-full"><Link href="/training">Pelajari Lebih Lanjut</Link></Button>
+                  <Button asChild className="w-full"><Link href="/login">Pelajari Lebih Lanjut</Link></Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
            <div className="text-center mt-12">
             <Button variant="outline" asChild>
-              <Link href="/training">Jelajahi Semua Pelatihan <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/login">Jelajahi Semua Pelatihan <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </section>
@@ -195,7 +195,7 @@ export default function Home() {
           </div>
            <div className="text-center mt-12">
             <Button variant="outline" asChild>
-              <Link href="/m-reels">Tonton Lebih Banyak <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/login">Tonton Lebih Banyak <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </section>
@@ -206,7 +206,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-headline font-bold">Portofolio Digital Anda, Diciptakan Ulang.</h2>
               <p className="text-muted-foreground mt-4 mb-6">Pamerkan karya terbaik Anda dengan portofolio digital yang bersih dan profesional. Biarkan proyek Anda berbicara dan menarik klien papan atas.</p>
               <Button variant="outline" asChild>
-                <Link href="/profile">Bangun Portofolio Anda</Link>
+                <Link href="/login">Bangun Portofolio Anda</Link>
               </Button>
             </div>
             <div className="w-full h-full">
