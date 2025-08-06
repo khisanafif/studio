@@ -164,47 +164,6 @@ export default function DashboardPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-4xl mx-auto space-y-16">
         
-        {/* Bagian Pencocokan Pekerjaan */}
-        <section id="job-matching">
-          <h1 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pencocokan Pekerjaan Cerdas</h1>
-          <p className="text-muted-foreground mb-8">
-            Jelaskan keahlian dan minat Anda, dan AI kami akan menemukan pekerjaan lepas yang sempurna untuk Anda.
-          </p>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 font-headline"><Sparkles className="h-6 w-6 text-primary" /><span>Apa keahlian Anda?</span></CardTitle>
-              <CardDescription>Contoh: "Saya seorang pengembang frontend yang terampil dalam React dan TypeScript. Saya bersemangat membangun antarmuka pengguna yang indah dan tertarik pada fintech."</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...jobMatchForm}>
-                <form onSubmit={jobMatchForm.handleSubmit(onJobMatchSubmit)} className="space-y-6">
-                  <FormField control={jobMatchForm.control} name="skillsAndInterests" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Keahlian & Minat Anda</FormLabel>
-                      <FormControl><Textarea placeholder="Ceritakan tentang keahlian, minat, dan apa yang Anda cari..." rows={4} {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <Button type="submit" disabled={jobMatchLoading} className="w-full sm:w-auto">
-                    {jobMatchLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menganalisis...</> : <>Temukan Pekerjaan Saya <Rocket className="ml-2 h-4 w-4" /></>}
-                  </Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-          {jobMatchLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /><span>Mencari pasangan sempurna Anda...</span></div>}
-          {jobSuggestions && (
-            <div className="mt-8">
-              <h2 className="text-2xl font-headline font-bold mb-4">Saran Pekerjaan Anda</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {jobSuggestions.jobSuggestions.map((job, index) => (
-                  <Card key={index} className="bg-background hover:border-primary/50 transition-colors"><CardContent className="p-4"><p className="font-semibold">{job}</p></CardContent></Card>
-                ))}
-              </div>
-            </div>
-          )}
-        </section>
-
         {/* Bagian Postingan */}
         <section id="posts">
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-8">Umpan Komunitas</h2>
@@ -263,6 +222,47 @@ export default function DashboardPage() {
                     </Card>
                 ))}
             </div>
+        </section>
+
+        {/* Bagian Pencocokan Pekerjaan */}
+        <section id="job-matching">
+          <h1 className="text-3xl md:text-4xl font-headline font-bold mb-2">Pencocokan Pekerjaan Cerdas</h1>
+          <p className="text-muted-foreground mb-8">
+            Jelaskan keahlian dan minat Anda, dan AI kami akan menemukan pekerjaan lepas yang sempurna untuk Anda.
+          </p>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 font-headline"><Sparkles className="h-6 w-6 text-primary" /><span>Apa keahlian Anda?</span></CardTitle>
+              <CardDescription>Contoh: "Saya seorang pengembang frontend yang terampil dalam React dan TypeScript. Saya bersemangat membangun antarmuka pengguna yang indah dan tertarik pada fintech."</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...jobMatchForm}>
+                <form onSubmit={jobMatchForm.handleSubmit(onJobMatchSubmit)} className="space-y-6">
+                  <FormField control={jobMatchForm.control} name="skillsAndInterests" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Keahlian & Minat Anda</FormLabel>
+                      <FormControl><Textarea placeholder="Ceritakan tentang keahlian, minat, dan apa yang Anda cari..." rows={4} {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                  <Button type="submit" disabled={jobMatchLoading} className="w-full sm:w-auto">
+                    {jobMatchLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Menganalisis...</> : <>Temukan Pekerjaan Saya <Rocket className="ml-2 h-4 w-4" /></>}
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+          {jobMatchLoading && <div className="mt-8 text-center flex items-center justify-center gap-2 text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin" /><span>Mencari pasangan sempurna Anda...</span></div>}
+          {jobSuggestions && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-headline font-bold mb-4">Saran Pekerjaan Anda</h2>
+              <div className="grid grid-cols-1 gap-4">
+                {jobSuggestions.jobSuggestions.map((job, index) => (
+                  <Card key={index} className="bg-background hover:border-primary/50 transition-colors"><CardContent className="p-4"><p className="font-semibold">{job}</p></CardContent></Card>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Bagian Jelajahi Pekerjaan */}
