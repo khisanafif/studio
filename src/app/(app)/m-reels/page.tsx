@@ -81,8 +81,8 @@ export default function MReelsPage() {
                 <Image
                   src={reel.videoUrl}
                   alt={`Reel by ${reel.user.name}`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   className="w-full h-full"
                   data-ai-hint={reel.dataAiHint}
                 />
