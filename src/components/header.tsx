@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -11,8 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 
 const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/jobs", label: "Jobs" },
-  { href: "/career-path", label: "Career Path" },
+  { href: "/profile", label: "Profile" },
 ];
 
 export function Header() {
@@ -25,7 +25,7 @@ export function Header() {
           href={link.href}
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",
-            pathname === link.href ? "text-primary" : "text-muted-foreground"
+            pathname.startsWith(link.href) ? "text-primary" : "text-muted-foreground"
           )}
         >
           {link.label}
@@ -88,3 +88,5 @@ export function Header() {
     </header>
   );
 }
+
+    
