@@ -7,13 +7,14 @@ import { Logo } from "./logo";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Menu, UserCircle } from "lucide-react";
+import { Menu, UserCircle, Video } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 const navLinks = [
   { href: "/dashboard", label: "Dasbor" },
   { href: "/jobs", label: "Pekerjaan" },
   { href: "/training", label: "Pelatihan" },
+  { href: "/m-reels", label: "M-Reels" },
 ];
 
 export function Header() {
