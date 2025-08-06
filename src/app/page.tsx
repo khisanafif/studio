@@ -32,6 +32,9 @@ const featuredTrainings = [
     { title: "Pola React Tingkat Lanjut", provider: "Udemy", type: "Kursus Online", icon: BookOpen },
     { title: "Desainer Figma Bersertifikat", provider: "Figma Academy", type: "Sertifikasi", icon: GraduationCap },
     { title: "Dasar-dasar Agile & Scrum", provider: "Coursera", type: "Kursus Online", icon: BookOpen },
+    { title: "Dasar-dasar Pemasaran Digital", provider: "Google Digital Garage", type: "Kursus Online", icon: BookOpen },
+    { title: "Sertifikasi Profesional Ilmu Data IBM", provider: "Coursera", type: "Sertifikasi", icon: GraduationCap },
+    { title: "Manajemen Proyek untuk Pemula", provider: "Project Management Institute", type: "Kursus Online", icon: BookOpen },
 ];
 
 const featuredReels = [
@@ -148,7 +151,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Tingkatkan Keahlian Anda</h2>
             <p className="max-w-xl mx-auto text-muted-foreground mt-2">Investasikan pada diri Anda dengan kursus dan sertifikasi yang relevan dengan industri.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredTrainings.map((training, index) => (
               <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
                 <CardHeader>

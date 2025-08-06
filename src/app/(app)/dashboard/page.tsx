@@ -19,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { cn } from '@/lib/utils';
 
 // Skema untuk Pencocokan Pekerjaan
 const jobMatchFormSchema = z.object({
@@ -79,6 +80,9 @@ const mockTrainings = [
     { title: "Pola React Tingkat Lanjut", provider: "Udemy", type: "Kursus Daring" },
     { title: "Desainer Figma Bersertifikat", provider: "Figma Academy", type: "Sertifikasi" },
     { title: "Dasar-dasar Agile & Scrum", provider: "Coursera", type: "Kursus Daring" },
+    { title: "Dasar-dasar Pemasaran Digital", provider: "Google Digital Garage", type: "Kursus Daring" },
+    { title: "Sertifikasi Profesional Ilmu Data IBM", provider: "Coursera", type: "Sertifikasi" },
+    { title: "Manajemen Proyek untuk Pemula", provider: "Project Management Institute", type: "Kursus Daring" },
 ];
 
 // Data tiruan untuk Postingan

@@ -11,6 +11,7 @@ import { Lightbulb, FileText, Clock, CheckCircle, GraduationCap, BookOpen } from
 const suggestedTrainings = [
   { title: "TypeScript Tingkat Lanjut", provider: "Udemy", type: "Kursus Online", status: "suggested" },
   { title: "Sertifikat Profesional Desain UX Google", provider: "Coursera", type: "Sertifikasi", status: "suggested" },
+  { title: "Manajemen Proyek Agile", provider: "edX", type: "Kursus Online", status: "suggested" },
 ];
 
 const appliedTrainings = [
@@ -25,12 +26,19 @@ const completedTrainings = [
   { title: "Figma untuk UI/UX", provider: "DesignCourse", type: "Kursus Online", status: "completed" },
 ];
 
-const allTrainings = [...suggestedTrainings, ...appliedTrainings, ...inProgressTrainings, ...completedTrainings];
+const allTrainings = [
+  { title: "TypeScript Tingkat Lanjut", provider: "Udemy", type: "Kursus Online", status: "suggested" },
+  { title: "Sertifikat Profesional Desain UX Google", provider: "Coursera", type: "Sertifikasi", status: "suggested" },
+  { title: "React - Panduan Lengkap", provider: "Udemy", type: "Kursus Online", status: "applied" },
+  { title: "Praktisi Cloud Bersertifikat AWS", provider: "AWS Training", type: "Sertifikasi", status: "in-progress" },
+  { title: "Figma untuk UI/UX", provider: "DesignCourse", type: "Kursus Online", status: "completed" },
+  { title: "Dasar-dasar Pemasaran Digital", provider: "Google", type: "Sertifikasi", status: "suggested" },
+];
 
 export default function TrainingPage() {
   const [activeTab, setActiveTab] = useState("suggested");
 
-  const renderTrainingList = (trainings: typeof allTrainings) => (
+  const renderTrainingList = (trainings: (typeof allTrainings)) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {trainings.length > 0 ? trainings.map((training, index) => (
         <Card key={index} className="flex flex-col hover:border-primary/50 transition-colors">
@@ -74,16 +82,16 @@ export default function TrainingPage() {
               <TabsTrigger value="completed" className="py-2"><CheckCircle className="mr-2"/>Selesai</TabsTrigger>
             </TabsList>
             <TabsContent value="suggested" className="mt-6">
-              {renderTrainingList(suggestedTrainings)}
+              {renderTrainingList(allTrainings.filter(t => t.status === 'suggested'))}
             </TabsContent>
             <TabsContent value="applied" className="mt-6">
-              {renderTrainingList(appliedTrainings)}
+              {renderTrainingList(allTrainings.filter(t => t.status === 'applied'))}
             </TabsContent>
             <TabsContent value="in-progress" className="mt-6">
-              {renderTrainingList(inProgressTrainings)}
+              {renderTrainingList(allTrainings.filter(t => t.status === 'in-progress'))}
             </TabsContent>
             <TabsContent value="completed" className="mt-6">
-              {renderTrainingList(completedTrainings)}
+              {renderTrainingList(allTrainings.filter(t => t.status === 'completed'))}
             </TabsContent>
           </Tabs>
         </section>
