@@ -38,7 +38,9 @@ const prompt = ai.definePrompt({
   name: 'jobMatchInitialSuggestionsPrompt',
   input: {schema: JobMatchInitialSuggestionsInputSchema},
   output: {schema: JobMatchInitialSuggestionsOutputSchema},
-  prompt: `You are an AI job matching assistant. A user has provided a short description of their skills and interests.  Based on this description, provide a list of job suggestions that would be relevant to them.
+  prompt: `You are an AI job matching assistant. A user has provided a short description of their skills and interests. Based on this description, provide a list of job suggestions that would be relevant to them.
+
+Please provide the output in Indonesian.
 
 Skills and Interests: {{{skillsAndInterests}}}
 

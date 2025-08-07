@@ -45,6 +45,8 @@ You will use this information to suggest a career path, relevant skills, and cer
 
 Consider the user's skills, preferences and experience to provide the best career path suggestion.
 
+Please provide the output in Indonesian.
+
 Current Skills: {{{userSkills}}}
 Preferences: {{{userPreferences}}}
 Experience: {{{userExperience}}}

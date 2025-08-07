@@ -36,6 +36,8 @@ const prompt = ai.definePrompt({
 
 You will use the job experience information to extract a list of relevant skills.
 
+Please provide the output in Indonesian.
+
 Job Experience: {{{jobExperience}}}`,
 });
 
