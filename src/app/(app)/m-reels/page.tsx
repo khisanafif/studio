@@ -90,6 +90,7 @@ export default function MReelsPage() {
                   muted
                   loop
                   playsInline
+                  ref={(el) => el?.play()}
                 />
               </div>
               

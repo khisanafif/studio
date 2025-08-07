@@ -378,6 +378,7 @@ export default function DashboardPage() {
                               muted
                               loop
                               playsInline
+                              ref={(el) => el?.play()}
                             />
                       </div>
                   </Card>
@@ -394,7 +395,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-    
-
-    
