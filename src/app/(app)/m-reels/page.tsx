@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, MessageCircle, Send, MoreVertical, Upload } from "lucide-react";
+import { Heart, MessageCircle, Send, MoreVertical, Volume2, VolumeX } from "lucide-react";
 import { cn } from '@/lib/utils';
 
 const mockReelsData = [
@@ -46,7 +46,8 @@ const mockReelsData = [
 
 
 export default function MReelsPage() {
-  const [reels, setReels] = useState(mockReelsData.map(reel => ({...reel, isLiked: false })));
+  const [reels, setReels] = useState(mockReelsData.map(reel => ({ ...reel, isLiked: false, isMuted: true })));
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handleLike = (id: number) => {
     setReels(reels.map(reel => {
@@ -57,6 +58,16 @@ export default function MReelsPage() {
     }));
   };
 
+  const toggleMute = (id: number, index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.muted = !video.muted;
+      setReels(currentReels => currentReels.map(reel =>
+        reel.id === id ? { ...reel, isMuted: video.muted } : reel
+      ));
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex justify-between items-center mb-8">
@@ -65,8 +76,8 @@ export default function MReelsPage() {
 
       <div className="flex justify-center">
         <div className="w-full max-w-sm flex flex-col items-center gap-12">
-          {reels.map((reel) => (
-            <Card key={reel.id} className="w-full rounded-xl overflow-hidden shadow-lg relative">
+          {reels.map((reel, index) => (
+            <Card key={reel.id} className="w-full rounded-xl overflow-hidden shadow-lg relative cursor-pointer" onClick={() => toggleMute(reel.id, index)}>
               {/* Header */}
               <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-10 bg-gradient-to-b from-black/50 to-transparent">
                 <div className="flex items-center gap-2">
@@ -84,14 +95,17 @@ export default function MReelsPage() {
               {/* Video Player */}
               <div className="relative w-full aspect-[9/16] bg-secondary">
                 <video
+                  ref={(el) => (videoRefs.current[index] = el)}
                   src={reel.videoUrl}
                   className="w-full h-full object-cover"
                   autoPlay
                   muted
                   loop
                   playsInline
-                  ref={(el) => el?.play()}
                 />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                  {reel.isMuted ? <VolumeX className="h-6 w-6 text-white" /> : <Volume2 className="h-6 w-6 text-white" />}
+                </div>
               </div>
               
               {/* Actions & Caption */}
@@ -106,17 +120,17 @@ export default function MReelsPage() {
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="text-white h-10 w-10 flex flex-col"
-                            onClick={() => handleLike(reel.id)}
+                            className="text-white h-10 w-10 flex flex-col hover:bg-white/20 focus-visible:bg-white/20 active:bg-white/30"
+                            onClick={(e) => { e.stopPropagation(); handleLike(reel.id); }}
                           >
                               <Heart className={cn("h-6 w-6", reel.isLiked && "fill-primary text-primary")} />
                               <span className="text-xs">{reel.likes}</span>
                           </Button>
-                          <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col">
+                          <Button variant="ghost" size="icon" className="text-white h-10 w-10 flex flex-col hover:bg-white/20 focus-visible:bg-white/20 active:bg-white/30">
                               <MessageCircle className="h-6 w-6" />
                               <span className="text-xs">{reel.comments}</span>
                           </Button>
-                          <Button variant="ghost" size="icon" className="text-white h-10 w-10">
+                          <Button variant="ghost" size="icon" className="text-white h-10 w-10 hover:bg-white/20 focus-visible:bg-white/20 active:bg-white/30">
                               <Send className="h-6 w-6" />
                           </Button>
                       </div>
@@ -129,3 +143,5 @@ export default function MReelsPage() {
     </div>
   );
 }
+
+    

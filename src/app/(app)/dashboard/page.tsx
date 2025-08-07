@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Rocket, Sparkles, Lightbulb, BrainCircuit, Award, Search, BookOpen, GraduationCap, ThumbsUp, MessageSquare, Share2, Send, MoreVertical, Heart, Video, ArrowRight } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useForm, useForm as useFormCareer } from "react-hook-form";
 import { z } from "zod";
 import { Badge } from "@/components/ui/badge";
@@ -106,6 +106,15 @@ const mockPosts = [
 
 export default function DashboardPage() {
   const { toast } = useToast();
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const handleVideoClick = (index: number) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.muted = !video.muted;
+    }
+  };
+
 
   // State dan form untuk Pencocokan Pekerjaan
   const [jobMatchLoading, setJobMatchLoading] = useState(false);
@@ -360,8 +369,8 @@ export default function DashboardPage() {
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Reels Freelancer</h2>
             <p className="text-muted-foreground mb-8">Dapatkan inspirasi dari video pendek dari komunitas.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {mockReels.map((reel) => (
-                  <Card key={reel.id} className="group overflow-hidden relative rounded-lg">
+              {mockReels.map((reel, index) => (
+                  <Card key={reel.id} className="group overflow-hidden relative rounded-lg cursor-pointer" onClick={() => handleVideoClick(index)}>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
                           <Video className="h-12 w-12 text-white" />
@@ -372,13 +381,13 @@ export default function DashboardPage() {
                       </div>
                       <div className="w-full h-80 bg-muted flex items-center justify-center">
                            <video
+                              ref={(el) => (videoRefs.current[index] = el)}
                               src={reel.videoUrl}
                               className="w-full h-full object-cover"
                               autoPlay
                               muted
                               loop
                               playsInline
-                              ref={(el) => el?.play()}
                             />
                       </div>
                   </Card>
@@ -395,3 +404,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
