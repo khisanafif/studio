@@ -62,7 +62,7 @@ export default function Home() {
       <main className="flex-1">
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 md:py-32">
           <h1 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
-            Temukan Pekerjaan Lepas Anda, dengan Cepat.
+            Find Your Freelance
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8">
             GigConnect adalah cara terpintar bagi Gen Z untuk menemukan peluang kerja lepas. Tinggalkan gulir tak berujung. Kami membawa pekerjaan yang tepat untuk Anda.
