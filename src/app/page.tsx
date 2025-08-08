@@ -65,7 +65,7 @@ export default function Home() {
             Smart Freelance Hub for Gen-Z
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8">
-            Dapatkan job freelance yang cocok tanpa drama
+            Dapatkan job freelance yang cocok tanpa drama <br />
             📁 Build. ✨ Show. 💼 Get Hired.
           </p>
           <Button size="lg" asChild>
