@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Logo } from "@/components/logo";
 import { useRouter } from 'next/navigation';
-import { Footer } from "@/components/footer";
 
 const formSchema = z.object({
   email: z.string().email("Silakan masukkan alamat email yang valid."),

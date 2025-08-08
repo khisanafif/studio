@@ -129,8 +129,8 @@ export default function Home() {
 
         <section id="featured-jobs" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Pekerjaan Lepas Unggulan</h2>
-            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Peluang pilihan untuk memulai karir lepas Anda.</p>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Peluang Freelance Menarik</h2>
+            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Yuk Mulai karir freelance-mu sekarang!</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredJobs.map((job, index) => (
@@ -235,7 +235,7 @@ export default function Home() {
             </div>
             <div className="w-full h-full">
               <Image
-                src="https://placehold.co/600x400.png"
+                src=".idx\portfolio.jpg"
                 width={600}
                 height={400}
                 alt="Pameran Portofolio Digital"

@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Logo />
-            <p className="text-sm text-muted-foreground">Cara terpintar untuk menemukan pekerjaan lepas.</p>
+            <p className="text-sm text-muted-foreground">Freelance for Fresh Graduate Gen-Z</p>
           </div>
           <div>
             <h3 className="font-headline font-semibold mb-4">Tautan Cepat</h3>
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t mt-8 pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} GigConnect. Semua hak dilindungi.</p>
+          <p>&copy; {new Date().getFullYear()} GigConnect. ZORO GEMASTIK XVIII.</p>
         </div>
       </div>
     </footer>
