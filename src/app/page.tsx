@@ -62,10 +62,11 @@ export default function Home() {
       <main className="flex-1">
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 md:py-32">
           <h1 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
-            Find Your Freelance
+            Smart Freelance Hub for Gen-Z
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8">
-            GigConnect adalah cara terpintar bagi Gen Z untuk menemukan peluang kerja lepas. Tinggalkan gulir tak berujung. Kami membawa pekerjaan yang tepat untuk Anda.
+            Dapatkan job freelance yang cocok tanpa drama
+            📁 Build. ✨ Show. 💼 Get Hired.
           </p>
           <Button size="lg" asChild>
             <Link href="/login">
@@ -76,8 +77,10 @@ export default function Home() {
 
         <section id="features" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 bg-secondary/30 rounded-t-3xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Cara Kerjanya</h2>
-            <p className="max-w-xl mx-auto text-muted-foreground mt-2">Jalan sederhana yang didukung AI untuk pekerjaan lepas Anda berikutnya.</p>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">How It Works</h2>
+            <p className="max-w-xl mx-auto text-muted-foreground mt-2">
+              Cuma 3 langkah simpel buat mulai karier freelance kamu bareng AI!
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center">
@@ -85,32 +88,40 @@ export default function Home() {
                 <div className="mx-auto bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
                   <User className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="font-headline">1. Buat Profil Anda</CardTitle>
+                <CardTitle className="font-headline">1. Bangun Profil Kerenmu</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Bangun portofolio sederhana yang menyoroti keahlian, pengalaman, dan apa yang Anda cari.</p>
+                <p className="text-muted-foreground">
+                  Ceritain siapa kamu, keahlian apa yang kamu punya, dan project seperti apa yang kamu incar. Biar klien langsung klik!
+                </p>
               </CardContent>
             </Card>
+
             <Card className="text-center">
               <CardHeader>
                 <div className="mx-auto bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
                   <Bot className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="font-headline">2. Dapatkan Kecocokan AI</CardTitle>
+                <CardTitle className="font-headline">2. Dapat Rekomendasi Pintar</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">AI kami menganalisis profil Anda untuk menyarankan pekerjaan lepas dan langkah karir yang paling relevan.</p>
+                <p className="text-muted-foreground">
+                  Teknologi AI kami bantu kamu nemuin gig freelance yang paling cocok — tanpa harus scroll seharian!
+                </p>
               </CardContent>
             </Card>
+
             <Card className="text-center">
               <CardHeader>
                 <div className="mx-auto bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
                   <Compass className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="font-headline">3. Rencanakan Arah Anda</CardTitle>
+                <CardTitle className="font-headline">3. Rancang Langkah Selanjutnya</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Gunakan alat perencanaan karir kami untuk mengidentifikasi keterampilan dan sertifikasi untuk meningkatkan karir Anda.</p>
+                <p className="text-muted-foreground">
+                  Butuh skill tambahan? Tenang! Gunakan career planner kami buat tahu apa yang harus ditingkatkan. Stay growing!
+                </p>
               </CardContent>
             </Card>
           </div>
