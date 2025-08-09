@@ -235,7 +235,7 @@ export default function Home() {
             </div>
             <div className="w-full h-full">
               <Image
-                src=".idx\portfolio.jpg"
+                src="https://placehold.co/600x400.png"
                 width={600}
                 height={400}
                 alt="Pameran Portofolio Digital"

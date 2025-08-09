@@ -15,7 +15,7 @@ export function Footer() {
           <div>
             <h3 className="font-headline font-semibold mb-4">Tautan Cepat</h3>
             <ul className="space-y-2">
-              <li><Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary">Dasbor</Link></li>
+              <li><Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary">Dasbord</Link></li>
               <li><Link href="/jobs" className="text-sm text-muted-foreground hover:text-primary">Pekerjaan</Link></li>
               <li><Link href="/profile" className="text-sm text-muted-foreground hover:text-primary">Profil</Link></li>
             </ul>
