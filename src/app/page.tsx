@@ -235,7 +235,7 @@ export default function Home() {
             </div>
             <div className="w-full h-full">
               <Image
-                src="https://ibb.co.com/vxBzdQ8H"
+                src="https://i.ibb.co.com/TxMQ9Ltt/portfolio-1.png"
                 width={600}
                 height={400}
                 alt="Pameran Portofolio Digital"
