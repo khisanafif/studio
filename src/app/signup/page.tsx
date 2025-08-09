@@ -32,7 +32,7 @@ export default function SignupPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     // Di sini Anda biasanya akan menangani pendaftaran pengguna
-    // Untuk prototipe ini, kami hanya akan mengarahkan ke dasbor
+    // Untuk prototipe ini, kami hanya akan mengarahkan ke dasbord
     router.push('/dashboard');
   }
 
@@ -45,7 +45,7 @@ export default function SignupPage() {
         <Card className="w-full max-w-sm">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-2xl">Buat Akun</CardTitle>
-            <CardDescription>Bergabunglah dengan GigConnect untuk menemukan peluang kerja lepas Anda berikutnya.</CardDescription>
+            <CardDescription>Bergabunglah dengan GigConnect untuk menemukan peluang freelance anda berikutnya.</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -57,7 +57,7 @@ export default function SignupPage() {
                     <FormItem>
                       <FormLabel>Nama Lengkap</FormLabel>
                       <FormControl>
-                        <Input placeholder="Alex Doe" {...field} />
+                        <Input placeholder="Lailatul Eky" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -70,7 +70,7 @@ export default function SignupPage() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="anda@contoh.com" {...field} />
+                        <Input placeholder="anda@gmail.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

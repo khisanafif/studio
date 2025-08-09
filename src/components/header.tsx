@@ -11,7 +11,7 @@ import { Menu, UserCircle, Video } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 const navLinks = [
-  { href: "/dashboard", label: "Dasbor" },
+  { href: "/dashboard", label: "Dasboard" },
   { href: "/jobs", label: "Pekerjaan" },
   { href: "/training", label: "Pelatihan" },
   { href: "/m-reels", label: "M-Reels" },
