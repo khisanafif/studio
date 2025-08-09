@@ -103,7 +103,6 @@ export default function SignupPage() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 }
