@@ -10,7 +10,7 @@ import { Footer } from "@/components/footer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import portfolioImg from "@/.idx/portfolio1.png";
+import portfolioImg from ".idx/portfolio1.png";
 
 const formatRupiah = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
