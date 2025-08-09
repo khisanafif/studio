@@ -10,7 +10,6 @@ import { Footer } from "@/components/footer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import portfolioImg from "@/src/image/portfolio1.png";
 
 const formatRupiah = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
@@ -236,7 +235,7 @@ export default function Home() {
             </div>
             <div className="w-full h-full">
               <Image
-                src={portfolioImg}
+                src="https://placehold.co/600x400.png"
                 width={600}
                 height={400}
                 alt="Pameran Portofolio Digital"
