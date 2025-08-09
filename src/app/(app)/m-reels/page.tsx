@@ -15,7 +15,7 @@ const mockReelsData = [
       name: "alex.dev",
       avatar: "https://placehold.co/40x40.png"
     },
-    videoUrl: "https://www.youtube.com/shorts/KYBW4sLxQxM",
+    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     caption: "Seharian ngoding buat fitur baru! 💻 #programmerlife #coding #gigconnect",
     likes: 123,
     comments: 12,
